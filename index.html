@@ -3,538 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catch My Heart ❤️</title>
-    <style>
-        /* Game Styling - Romantic Pink Gradient Theme */
-        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Quicksand', sans-serif;
-            background: linear-gradient(135deg, #ffd3e1 0%, #ffb3d9 50%, #ff8fc7 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        /* Floating Hearts Background */
-        .bg-heart {
-            position: absolute;
-            font-size: 30px;
-            opacity: 0.2;
-            animation: floatBg 10s infinite ease-in-out;
-            pointer-events: none;
-        }
-        
-        @keyframes floatBg {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(10deg); }
-        }
-        
-        /* Game Container */
-        .game-container {
-            text-align: center;
-            position: relative;
-            z-index: 10;
-        }
-        
-        h1 {
-            color: #fff;
-            font-size: clamp(2rem, 6vw, 3rem);
-            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
-            margin-bottom: 20px;
-            animation: titleBounce 2s infinite ease-in-out;
-        }
-        
-        @keyframes titleBounce {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
-        /* Score Display */
-        .score-container {
-            display: flex;
-            justify-content: space-around;
-            max-width: 400px;
-            margin: 0 auto 20px;
-            background: rgba(255, 255, 255, 0.3);
-            padding: 15px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .score-item {
-            color: #fff;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-        
-        .score-value {
-            font-size: 1.5rem;
-            color: #ff1744;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-        }
-        
-        /* Canvas */
-        #gameCanvas {
-            border: 5px solid rgba(255, 255, 255, 0.5);
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            display: block;
-            margin: 0 auto;
-            max-width: 100%;
-            touch-action: none;
-        }
-        
-        /* Buttons */
-        .btn {
-            font-family: 'Quicksand', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-            padding: 15px 40px;
-            margin: 20px 10px;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        .btn-start {
-            background: linear-gradient(135deg, #ff6b9d, #c44569);
-            color: white;
-        }
-        
-        .btn-start:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        }
-        
-        .btn-restart {
-            background: linear-gradient(135deg, #64b5f6, #1976d2);
-            color: white;
-        }
-        
-        .btn-restart:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        }
-        
-        .btn-continue {
-            background: linear-gradient(135deg, #81c784, #388e3c);
-            color: white;
-        }
-        
-        .btn-continue:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Game Messages */
-        .game-message {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.95);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
-            z-index: 100;
-            display: none;
-            text-align: center;
-            max-width: 90%;
-        }
-        
-        .game-message.show {
-            display: block;
-            animation: popIn 0.5s ease;
-        }
-        
-        @keyframes popIn {
-            0% { transform: translate(-50%, -50%) scale(0); }
-            100% { transform: translate(-50%, -50%) scale(1); }
-        }
-        
-        .message-title {
-            font-size: clamp(1.5rem, 5vw, 2.5rem);
-            color: #ff1744;
-            margin-bottom: 15px;
-        }
-        
-        .message-text {
-            font-size: clamp(1rem, 3vw, 1.3rem);
-            color: #333;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-        
-        /* Instructions */
-        .instructions {
-            color: #fff;
-            font-size: 1rem;
-            margin-top: 15px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Mobile Optimization */
-        @media (max-width: 768px) {
-            .score-container {
-                font-size: 0.9rem;
-                padding: 10px;
-            }
-            
-            .btn {
-                font-size: 1.1rem;
-                padding: 12px 30px;
-            }
-        }
-    </style>
+    <title>Mission To The Moon 🌙 – For Aswani Vijoy</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Background Hearts -->
-    <div class="bg-heart" style="top: 10%; left: 10%;">💕</div>
-    <div class="bg-heart" style="top: 70%; left: 80%; animation-delay: 2s;">❤️</div>
-    <div class="bg-heart" style="top: 30%; right: 15%; animation-delay: 4s;">💖</div>
-    <div class="bg-heart" style="bottom: 20%; left: 70%; animation-delay: 1s;">💗</div>
-    
-    <div class="game-container">
-        <h1>Catch My Heart ❤️</h1>
-        
-        <div class="score-container">
-            <div class="score-item">
-                Score: <span class="score-value" id="score">0</span>
-            </div>
-            <div class="score-item">
-                Lives: <span class="score-value" id="lives">3</span> ❤️
+    <!-- Audio Element - Replace blue.mp3 with your downloaded "Blue (2024) - Yung Kai" audio file -->
+    <audio id="bgMusic" loop>
+        <source src="assets/blue.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Music Control Button -->
+    <button id="musicToggle" class="music-toggle">
+        <span class="music-icon">🔊</span>
+    </button>
+
+    <!-- Animated Background Elements -->
+    <div class="stars-container"></div>
+    <div class="hearts-container"></div>
+    <div class="shooting-stars-container"></div>
+
+    <!-- PAGE 0 - Secret Code Authentication -->
+    <section id="page0" class="page active">
+        <div class="content-center">
+            <div class="mission-control-screen">
+                <div class="control-header">
+                    <div class="status-light"></div>
+                    <span class="control-title">MISSION CONTROL CENTER</span>
+                    <div class="status-light"></div>
+                </div>
+                <div class="control-body">
+                    <p class="control-text">⚠️ RESTRICTED ACCESS ⚠️</p>
+                    <p class="control-text">Mission: VALENTINE PROTOCOL</p>
+                    <p class="control-text">Destination: THE MOON 🌙</p>
+                    <p class="control-text">Commander: CHUNDU</p>
+                    <div class="divider"></div>
+                    <p class="auth-prompt">Please enter launch authorization code:</p>
+                    <input type="password" id="secretCode" class="code-input" placeholder="DDMMYYYY" maxlength="20" autocomplete="off">
+                    <p class="code-hint">💡 Hint: A date that changed everything...</p>
+                    <button class="btn-primary" onclick="verifyCode()">
+                        Verify Authorization Code 🔐
+                    </button>
+                    <p id="codeError" class="error-message"></p>
+                </div>
+                <div class="control-footer">
+                    <span class="footer-text">UNAUTHORIZED ACCESS PROHIBITED</span>
+                </div>
             </div>
         </div>
-        
-        <canvas id="gameCanvas"></canvas>
-        
-        <div class="instructions">
-            Desktop: Use ← → Arrow Keys | Mobile: Touch and Drag
+    </section>
+
+    <!-- PAGE 1 - Launch Screen -->
+    <section id="page1" class="page">
+        <div class="content-center">
+            <h1 class="glitch-text">Mission To The Moon</h1>
+            <p class="subtitle">Commander Chundu, are you ready for launch?</p>
+            <button class="btn-primary" onclick="startMission()">
+                Initiate Mission 🚀
+            </button>
         </div>
-        
-        <button class="btn btn-start" id="startBtn" onclick="startGame()">Start Game</button>
-        
-        <!-- Game Over Message -->
-        <div class="game-message" id="gameOverMsg">
-            <div class="message-title">Game Over! 💔</div>
-            <div class="message-text">You caught <span id="finalScore"></span> hearts!</div>
-            <button class="btn btn-restart" onclick="restartGame()">Try Again</button>
-        </div>
-        
-        <!-- Win Message -->
-        <div class="game-message" id="winMsg">
-            <div class="message-title">You caught my heart forever ❤️</div>
-            <div class="message-text">
-                You proved your love by catching all my hearts!<br>
-                Let's continue our journey together...
+    </section>
+
+    <!-- PAGE 2 - Fake Loading Screen -->
+    <section id="page2" class="page">
+        <div class="terminal">
+            <div class="terminal-header">
+                <span class="terminal-dot red"></span>
+                <span class="terminal-dot yellow"></span>
+                <span class="terminal-dot green"></span>
             </div>
-            <button class="btn btn-continue" onclick="continueToWebsite()">Continue Mission 🚀</button>
+            <div class="terminal-body">
+                <div id="terminalText"></div>
+                <span class="cursor">_</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 3 - Her Dream -->
+    <section id="page3" class="page">
+        <div class="content-center">
+            <div class="story-text">
+                <p class="fade-in-text" data-delay="0">Once upon a time, there was a little girl</p>
+                <p class="fade-in-text" data-delay="2000">who wanted to explore the stars...</p>
+                <p class="fade-in-text" data-delay="5000">She grew up...</p>
+                <p class="fade-in-text" data-delay="7000">but she still shines brighter than them. ✨</p>
+            </div>
+            <button class="btn-primary fade-in-text" data-delay="9500" onclick="nextPage(4)">
+                Continue Orbiting 💫
+            </button>
+        </div>
+    </section>
+
+    <!-- PAGE 4 - Stargazing Dream -->
+    <section id="page4" class="page">
+        <div class="content-center">
+            <div class="constellation-container">
+                <svg id="constellation" width="400" height="300" viewBox="0 0 400 300">
+                    <!-- Constellation dots will be generated by JS -->
+                </svg>
+            </div>
+            <p class="story-text">We once dreamed of stargazing together.</p>
+            <p class="hidden-text" id="stargaze-reveal">
+                One day, under this sky, I'll hold your hand and count stars with you. 🌠
+            </p>
+            <button class="btn-primary" onclick="nextPage(5)">
+                Proceed to Memory Galaxy 🪐
+            </button>
+        </div>
+    </section>
+
+    <!-- PAGE 5 - Memory Galaxy -->
+    <section id="page5" class="page">
+        <div class="content-center">
+            <h2 class="section-title">Memory Galaxy</h2>
+            <div class="planets-container">
+                <button class="planet-btn" onclick="openMemory('rose')">
+                    <span class="planet-icon">🤍</span>
+                    <span class="planet-label">White Rose Planet</span>
+                </button>
+                <button class="planet-btn" onclick="openMemory('chocolate')">
+                    <span class="planet-icon">🍫</span>
+                    <span class="planet-label">Chocolate Asteroid</span>
+                </button>
+                <button class="planet-btn" onclick="openMemory('future')">
+                    <span class="planet-icon">✨</span>
+                    <span class="planet-label">Future Nebula</span>
+                </button>
+            </div>
+            <button class="btn-primary" onclick="nextPage(6)">
+                Final Mission Awaits 🚀
+            </button>
+        </div>
+    </section>
+
+    <!-- Memory Modal -->
+    <div id="memoryModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeMemory()">&times;</button>
+            <h3 id="memoryTitle"></h3>
+            <p id="memoryText"></p>
         </div>
     </div>
 
-    <script>
-        // IMPORTANT: Replace girl.png and boy.png with your own cropped head images
-        // Place them in the assets folder: assets/girl.png and assets/boy.png
-        
-        // Game Configuration
-        const canvas = document.getElementById('gameCanvas');
-        const ctx = canvas.getContext('2d');
-        
-        // Set canvas size
-        function resizeCanvas() {
-            const maxWidth = Math.min(600, window.innerWidth - 40);
-            const maxHeight = Math.min(500, window.innerHeight - 300);
-            canvas.width = maxWidth;
-            canvas.height = maxHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-        
-        // Game Variables
-        let gameRunning = false;
-        let score = 0;
-        let lives = 3;
-        let playerSpeed = 5;
-        let fallingSpeed = 0.5; // Reduced to 1/4 of original speed (was 2)
-        let lastTime = 0;
-        
-        // Player (girlfriend's head)
-        const player = {
-            x: canvas.width / 2 - 30,
-            y: canvas.height - 80,
-            width: 60,
-            height: 60,
-            speed: 0,
-            img: null
-        };
-        
-        // Falling Objects (boyfriend's head)
-        let fallingObjects = [];
-        
-        // Images - Replace these with actual images
-        const playerImg = new Image();
-        playerImg.src = 'assets/girl.png'; // Replace with girlfriend's head image
-        
-        const fallingImg = new Image();
-        fallingImg.src = 'assets/boy.png'; // Replace with boyfriend's head image
-        
-        // Placeholder circles if images fail to load
-        let useImagePlayer = false;
-        let useImageFalling = false;
-        
-        playerImg.onload = () => { useImagePlayer = true; };
-        fallingImg.onload = () => { useImageFalling = true; };
-        
-        // Input Handling
-        const keys = {};
-        
-        document.addEventListener('keydown', (e) => {
-            keys[e.key] = true;
-        });
-        
-        document.addEventListener('keyup', (e) => {
-            keys[e.key] = false;
-        });
-        
-        // Touch Controls for Mobile
-        let touchStartX = 0;
-        let touchCurrentX = 0;
-        let isTouching = false;
-        
-        canvas.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            touchStartX = e.touches[0].clientX;
-            touchCurrentX = touchStartX;
-            isTouching = true;
-        });
-        
-        canvas.addEventListener('touchmove', (e) => {
-            e.preventDefault();
-            if (isTouching) {
-                touchCurrentX = e.touches[0].clientX;
-                const deltaX = touchCurrentX - touchStartX;
-                player.x += deltaX * 0.5;
-                touchStartX = touchCurrentX;
-                
-                // Keep player in bounds
-                if (player.x < 0) player.x = 0;
-                if (player.x > canvas.width - player.width) player.x = canvas.width - player.width;
-            }
-        });
-        
-        canvas.addEventListener('touchend', () => {
-            isTouching = false;
-        });
-        
-        // Game Functions
-        function startGame() {
-            gameRunning = true;
-            score = 0;
-            lives = 3;
-            fallingSpeed = 0.5; // Reset to slower speed (was 2)
-            fallingObjects = [];
-            updateUI();
-            document.getElementById('startBtn').style.display = 'none';
-            gameLoop();
-        }
-        
-        function restartGame() {
-            document.getElementById('gameOverMsg').classList.remove('show');
-            startGame();
-        }
-        
-        function continueToWebsite() {
-            // Mark game as completed in session storage
-            sessionStorage.setItem('gameCompleted', 'true');
-            // Redirect back to main website
-            window.location.href = 'index.html';
-        }
-        
-        function updateUI() {
-            document.getElementById('score').textContent = score;
-            document.getElementById('lives').textContent = lives;
-        }
-        
-        function createFallingObject() {
-            const obj = {
-                x: Math.random() * (canvas.width - 50),
-                y: -60,
-                width: 50,
-                height: 50,
-                speed: fallingSpeed + Math.random() * 0.5 // Reduced random variation (was 2)
-            };
-            fallingObjects.push(obj);
-        }
-        
-        function updatePlayer() {
-            // Keyboard controls
-            if (keys['ArrowLeft'] || keys['a']) {
-                player.x -= playerSpeed;
-            }
-            if (keys['ArrowRight'] || keys['d']) {
-                player.x += playerSpeed;
-            }
-            
-            // Keep player in bounds
-            if (player.x < 0) player.x = 0;
-            if (player.x > canvas.width - player.width) player.x = canvas.width - player.width;
-        }
-        
-        function updateFallingObjects() {
-            for (let i = fallingObjects.length - 1; i >= 0; i--) {
-                const obj = fallingObjects[i];
-                obj.y += obj.speed;
-                
-                // Check collision with player
-                if (checkCollision(player, obj)) {
-                    score++;
-                    updateUI();
-                    fallingObjects.splice(i, 1);
-                    
-                    // Increase difficulty
-                    if (score % 3 === 0) {
-                        fallingSpeed += 0.075; // Reduced to 1/4 (was 0.3)
-                    }
-                    
-                    // Win condition
-                    if (score >= 10) {
-                        gameRunning = false;
-                        document.getElementById('winMsg').classList.add('show');
-                    }
-                    
-                    // Bounce animation
-                    animateCatch(obj.x + obj.width / 2, obj.y);
-                    continue;
-                }
-                
-                // Check if missed
-                if (obj.y > canvas.height) {
-                    lives--;
-                    updateUI();
-                    fallingObjects.splice(i, 1);
-                    
-                    if (lives <= 0) {
-                        gameOver();
-                    }
-                }
-            }
-        }
-        
-        function checkCollision(rect1, rect2) {
-            return rect1.x < rect2.x + rect2.width &&
-                   rect1.x + rect1.width > rect2.x &&
-                   rect1.y < rect2.y + rect2.height &&
-                   rect1.y + rect1.height > rect2.y;
-        }
-        
-        function animateCatch(x, y) {
-            // Create temporary heart animation
-            const heart = document.createElement('div');
-            heart.textContent = '❤️';
-            heart.style.position = 'absolute';
-            heart.style.left = x + canvas.offsetLeft + 'px';
-            heart.style.top = y + canvas.offsetTop + 'px';
-            heart.style.fontSize = '30px';
-            heart.style.pointerEvents = 'none';
-            heart.style.animation = 'catchBounce 0.5s ease-out';
-            document.body.appendChild(heart);
-            
-            setTimeout(() => heart.remove(), 500);
-        }
-        
-        // Add CSS animation for catch bounce
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes catchBounce {
-                0% { transform: scale(1) translateY(0); opacity: 1; }
-                50% { transform: scale(1.5) translateY(-30px); opacity: 1; }
-                100% { transform: scale(0) translateY(-50px); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
-        
-        function drawPlayer() {
-            if (useImagePlayer) {
-                ctx.drawImage(playerImg, player.x, player.y, player.width, player.height);
-            } else {
-                // Fallback: draw circle with heart
-                ctx.fillStyle = '#ff69b4';
-                ctx.beginPath();
-                ctx.arc(player.x + player.width/2, player.y + player.height/2, player.width/2, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.fillStyle = 'white';
-                ctx.font = '30px Arial';
-                ctx.textAlign = 'center';
-                ctx.fillText('👧', player.x + player.width/2, player.y + player.height/2 + 10);
-            }
-        }
-        
-        function drawFallingObjects() {
-            fallingObjects.forEach(obj => {
-                if (useImageFalling) {
-                    ctx.drawImage(fallingImg, obj.x, obj.y, obj.width, obj.height);
-                } else {
-                    // Fallback: draw circle with heart
-                    ctx.fillStyle = '#4ecdc4';
-                    ctx.beginPath();
-                    ctx.arc(obj.x + obj.width/2, obj.y + obj.height/2, obj.width/2, 0, Math.PI * 2);
-                    ctx.fill();
-                    ctx.fillStyle = 'white';
-                    ctx.font = '30px Arial';
-                    ctx.textAlign = 'center';
-                    ctx.fillText('👦', obj.x + obj.width/2, obj.y + obj.height/2 + 10);
-                }
-            });
-        }
-        
-        function draw() {
-            // Clear canvas
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // Draw game elements
-            drawPlayer();
-            drawFallingObjects();
-        }
-        
-        function gameLoop(timestamp = 0) {
-            if (!gameRunning) return;
-            
-            const deltaTime = timestamp - lastTime;
-            lastTime = timestamp;
-            
-            // Create new falling objects
-            if (Math.random() < 0.02) {
-                createFallingObject();
-            }
-            
-            updatePlayer();
-            updateFallingObjects();
-            draw();
-            
-            requestAnimationFrame(gameLoop);
-        }
-        
-        function gameOver() {
-            gameRunning = false;
-            document.getElementById('finalScore').textContent = score;
-            document.getElementById('gameOverMsg').classList.add('show');
-        }
-        
-        // Draw initial state
-        draw();
-    </script>
+    <!-- PAGE 6 - Mini Game Link -->
+    <section id="page6" class="page">
+        <div class="content-center">
+            <h2 class="section-title">Special Mission: Catch My Heart</h2>
+            <p class="story-text">Before we continue, there's one more challenge...</p>
+            <p class="story-text">Catch my heart 10 times to proceed! ❤️</p>
+            <a href="game.html" class="btn-primary">
+                Start Game 🎮
+            </a>
+            <button class="btn-secondary" onclick="skipGame()">
+                Skip Game (for testing)
+            </button>
+        </div>
+    </section>
+
+    <!-- PAGE 7 - The Moon Page -->
+    <section id="page7" class="page">
+        <div class="moon-container">
+            <div class="moon"></div>
+        </div>
+        <div class="content-center">
+            <div class="moon-text">
+                <p class="fade-in-text" data-delay="0">You love the moon...</p>
+                <p class="fade-in-text" data-delay="3000">But even the moon borrows its light.</p>
+                <p class="fade-in-text" data-delay="6000">You don't.</p>
+                <p class="fade-in-text" data-delay="8000">You glow on your own. 🌟</p>
+            </div>
+            <div class="secret-star" onclick="revealSecret()">⭐</div>
+            <p class="hidden-text" id="secret-message">
+                I see my future with you. 💫
+            </p>
+            <button class="btn-primary fade-in-text" data-delay="11000" onclick="nextPage(8)">
+                Continue 🌙
+            </button>
+        </div>
+    </section>
+
+    <!-- PAGE 8 - The Proposal -->
+    <section id="page8" class="page">
+        <div class="content-center proposal-container">
+            <p class="proposal-text fade-in-text" data-delay="0">
+                Commander Aswani Vijoy...
+            </p>
+            <p class="proposal-text fade-in-text" data-delay="2500">
+                After traveling through stars, memories, and my heart...
+            </p>
+            <h1 class="proposal-question fade-in-text" data-delay="5000">
+                Will you be my Valentine?
+            </h1>
+            <div class="proposal-buttons fade-in-text" data-delay="7000">
+                <button class="btn-yes" onclick="acceptProposal()">YES 🌙</button>
+                <button class="btn-no" id="noBtn" onmouseover="moveNoButton(event)" ontouchstart="moveNoButtonMobile(event)">No 🌑</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 9 - Success -->
+    <section id="page9" class="page">
+        <canvas id="confetti"></canvas>
+        <div class="content-center success-container">
+            <h1 class="success-title">Mission Successful 🚀</h1>
+            <p class="success-text">You and me.</p>
+            <p class="success-text">Same sky.</p>
+            <p class="success-text">Same future.</p>
+            <p class="success-text">✨ Forever ✨</p>
+            <button class="btn-primary" onclick="restartMission()">
+                Replay Mission 🚀
+            </button>
+        </div>
+    </section>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
