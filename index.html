@@ -22,13 +22,43 @@
     <div class="hearts-container"></div>
     <div class="shooting-stars-container"></div>
 
+    <!-- PAGE 0 - Secret Code Authentication -->
+    <section id="page0" class="page active">
+        <div class="content-center">
+            <div class="mission-control-screen">
+                <div class="control-header">
+                    <div class="status-light"></div>
+                    <span class="control-title">MISSION CONTROL CENTER</span>
+                    <div class="status-light"></div>
+                </div>
+                <div class="control-body">
+                    <p class="control-text">⚠️ RESTRICTED ACCESS ⚠️</p>
+                    <p class="control-text">Mission: VALENTINE PROTOCOL</p>
+                    <p class="control-text">Destination: THE MOON 🌙</p>
+                    <p class="control-text">Commander: CHUNDU</p>
+                    <div class="divider"></div>
+                    <p class="auth-prompt">Please enter launch authorization code:</p>
+                    <input type="password" id="secretCode" class="code-input" placeholder="DDMMYYYY" maxlength="20" autocomplete="off">
+                    <p class="code-hint">💡 Hint: A date that changed everything...</p>
+                    <button class="btn-primary" onclick="verifyCode()">
+                        Verify Authorization Code 🔐
+                    </button>
+                    <p id="codeError" class="error-message"></p>
+                </div>
+                <div class="control-footer">
+                    <span class="footer-text">UNAUTHORIZED ACCESS PROHIBITED</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- PAGE 1 - Launch Screen -->
-    <section id="page1" class="page active">
+    <section id="page1" class="page">
         <div class="content-center">
             <h1 class="glitch-text">Mission To The Moon</h1>
             <p class="subtitle">Commander Chundu, are you ready for launch?</p>
             <button class="btn-primary" onclick="startMission()">
-                Initiate Mission 
+                Initiate Mission 🚀
             </button>
         </div>
     </section>
@@ -87,20 +117,20 @@
             <h2 class="section-title">Memory Galaxy</h2>
             <div class="planets-container">
                 <button class="planet-btn" onclick="openMemory('rose')">
-                    <span class="planet-icon">🌸</span>
-                    <span class="planet-label">Our First Meet</span>
+                    <span class="planet-icon">🤍</span>
+                    <span class="planet-label">White Rose Planet</span>
                 </button>
                 <button class="planet-btn" onclick="openMemory('chocolate')">
-                    <span class="planet-icon">💌</span>
-                    <span class="planet-label">The First 'Love You'</span>
+                    <span class="planet-icon">🍫</span>
+                    <span class="planet-label">Chocolate Asteroid</span>
                 </button>
                 <button class="planet-btn" onclick="openMemory('future')">
-                    <span class="planet-icon">🤍</span>
-                    <span class="planet-label">The First Kiss</span>
+                    <span class="planet-icon">✨</span>
+                    <span class="planet-label">Future Nebula</span>
                 </button>
             </div>
             <button class="btn-primary" onclick="nextPage(6)">
-                Final Mission Awaits 
+                Final Mission Awaits 🚀
             </button>
         </div>
     </section>
@@ -123,9 +153,9 @@
             <a href="game.html" class="btn-primary">
                 Start Game 🎮
             </a>
-            <!-- <button class="btn-secondary" onclick="skipGame()">
+            <button class="btn-secondary" onclick="skipGame()">
                 Skip Game (for testing)
-            </button> -->
+            </button>
         </div>
     </section>
 
@@ -174,17 +204,18 @@
     <section id="page9" class="page">
         <canvas id="confetti"></canvas>
         <div class="content-center success-container">
-            <h1 class="success-title">Mission Successful </h1>
+            <h1 class="success-title">Mission Successful 🚀</h1>
             <p class="success-text">You and me.</p>
             <p class="success-text">Same sky.</p>
             <p class="success-text">Same future.</p>
             <p class="success-text">✨ Forever ✨</p>
             <button class="btn-primary" onclick="restartMission()">
-                Replay Mission 
+                Replay Mission 🚀
             </button>
         </div>
     </section>
 
+    <script src="config.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
