@@ -1,8 +1,63 @@
 // Valentine's Day Space Mission - Interactive Script
 // Mission To The Moon for Aswani Vijoy
 
+// ===== SECRET CODE CONFIGURATION =====
+// The secret code is stored in a separate file (config.js) that you DON'T upload to GitHub
+// This keeps your anniversary date private!
+// Instructions: Create a file called 'config.js' in the same folder as this file
+// =====================================
+
 // Global Variables
-let currentPage = 1;
+let SECRET_CODE = ""; // Will be loaded from config.js
+let musicPlaying = false;
+const bgMusic = document.getElementById('bgMusic');
+const musicToggle = document.getElementById('musicToggle');
+
+// Secret Code Verification
+function verifyCode() {
+    const input = document.getElementById('secretCode').value;
+    const errorMsg = document.getElementById('codeError');
+    
+    if (input === SECRET_CODE) {
+        // Correct code - grant access
+        errorMsg.style.color = 'var(--accent-cyan)';
+        errorMsg.textContent = '✓ ACCESS GRANTED - LAUNCHING MISSION...';
+        
+        // Add success sound effect (visual feedback)
+        document.querySelector('.mission-control-screen').style.boxShadow = '0 0 80px rgba(100, 255, 218, 0.8)';
+        
+        setTimeout(() => {
+            goToPage(1); // Go to launch screen
+        }, 1500);
+    } else {
+        // Wrong code
+        errorMsg.style.color = 'var(--nebula-pink)';
+        errorMsg.textContent = '✗ INVALID CODE - ACCESS DENIED';
+        
+        // Shake effect
+        document.querySelector('.mission-control-screen').style.animation = 'shake 0.5s ease';
+        setTimeout(() => {
+            document.querySelector('.mission-control-screen').style.animation = '';
+        }, 500);
+        
+        // Clear input
+        document.getElementById('secretCode').value = '';
+    }
+}
+
+// Allow Enter key to submit code
+document.addEventListener('DOMContentLoaded', function() {
+    const codeInput = document.getElementById('secretCode');
+    if (codeInput) {
+        codeInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                verifyCode();
+            }
+        });
+    }
+});
+
+// Global Variables
 let musicPlaying = false;
 const bgMusic = document.getElementById('bgMusic');
 const musicToggle = document.getElementById('musicToggle');
@@ -157,7 +212,7 @@ function runTerminalAnimation() {
         'CONFIRMED: Maximum cuteness detected ✓',
         '',
         'Access granted.',
-        'Welcome, Commander Chundu. '
+        'Welcome, Commander Chundu. 🚀'
     ];
     
     let messageIndex = 0;
@@ -235,18 +290,16 @@ function drawConstellation() {
 // PAGE 5 - Memory Galaxy
 const memories = {
     rose: {
-        title: "Our First Meet 🌸",
-        text: "May 14, 2025 — Kozhikode.\n\nYou said you were going to visit Rinu. But that day… you came to meet me.\n\nKozhikode Railway Station — the beginning of something real.\n\nWe walked through Gokulam Mall like the world didn’t exist. And I still smile thinking about the escalator.\n\nI didn’t “accidentally” hold your hand. I was waiting for that moment. Every escalator became my excuse to be closer to you.\n\nWe took so many photos. But none of them captured how beautiful you looked in that traditional dress. It’s still my favorite.\n\nMay 14 wasn’t just our first meet. It was the first time love felt real in 3D.\n\nAnd that day was awesome — because it was us."
+        title: "White Rose Planet 🤍",
+        text: "// Replace this with your personal memory about giving her a white rose\n\nRemember that special moment when... [Add your memory here]"
     },
-
     chocolate: {
-        title: "The First 'Love You' 💌",
-        text: "June 11, 2025 — 5:41 PM.\n\nWe were texting. Talking about that thing.\n\nYou know what it is.\n\nIt was already a beautiful conversation… and then at exactly 5:41 PM — you sent it.\n\n\"Love u\" 💋\n\nFor the first time.\n\nMy world paused for a second.\n\nAnd then you said it again. And again.\n\nThat was the moment everything changed.\n\nWe didn’t plan it. But we knew.\n\nJune 11 became our date — the day love spoke back."
+        title: "Chocolate Asteroid 🍫",
+        text: "// Replace this with your personal memory about sharing chocolate\n\nThat time we... [Add your memory here]"
     },
-
     future: {
-        title: "The First Kiss 🤍",
-        text: "August 2, 2025.\n\nYou had just finished your exam. You were standing there… unaware.\n\nI walked up from behind and said, \"Chundu.\" The first time I called you that in person.\n\nYou turned around — a little startled — and then you saw me.\n\nWe hugged. And in that moment, long distance disappeared.\n\nWe walked to the nearby paddy field. Open sky. Quiet wind.\n\nI gave you our first flower — a white rose.\n\nAnd then… suddenly.\n\nYou kissed my cheek.\n\nSoft. Unexpected. Perfect.\n\nAfter a while, I kissed you back.\n\nThat day, love stopped being virtual — and became something we could feel."
+        title: "Future Nebula ✨",
+        text: "// Replace this with your dreams and plans for the future together\n\nI see us... [Add your vision here]"
     }
 };
 
